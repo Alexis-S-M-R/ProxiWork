@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Google Maps - Centre de la carte dynamique</title>
+    <style>
+      #map {
+        height: 400px; 
+        width: 600px;
+      }
+      #centerCoords {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    </style>
+    <!-- Inclure l'API Google Maps (remplacez "YOUR_API_KEY") -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuRA36AzIS5o-83Qx1V6Rc90NXsZRwU4o"></script>
+  </head>
+  <body>
+    <h1>Récupérer le centre de la carte à chaque déplacement</h1>
+    
+    <div id="map"></div>
+    <div id="centerCoords">Centre actuel : (en attente...)</div>
+
+    <script>
+      let map;
+
+      function initMap() {
+        // 1) Initialiser la carte
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 48.8566, lng: 2.3522 }, // Paris
+          zoom: 12
+        });
+
+        // 2) Écouter l'événement "idle" : se déclenche après tout changement (drag, zoom, etc.)
+        map.addListener('idle', () => {
+          const center = map.getCenter();
+          const lat = center.lat();
+          const lng = center.lng();
+          
+          // 3) Afficher les coordonnées dans la page (ou console)
+          document.getElementById("centerCoords").textContent =
+            `Centre actuel : lat=${lat.toFixed(6)}, lng=${lng.toFixed(6)}`;
+        });
+      }
+
+      // Lancer l'initialisation de la carte au chargement de la page
+      window.onload = initMap;
+    </script>
+  </body>
+</html>

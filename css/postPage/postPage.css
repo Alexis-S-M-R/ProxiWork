@@ -1,0 +1,335 @@
+* {
+  box-sizing: border-box;
+  font-family: "Roboto Mono"
+}
+
+.button {
+    background-color: #CCCCCC;
+    border: 1px solid #CCCCCC;
+    font-size: clamp(0.6em, 2vw, 1em);
+}
+
+.button:hover {
+    transform: scale(1.01);
+    transition: 0.1s linear;
+    background-color: #d6d6d6;
+    border: 1px solid #d6d6d6;
+}
+
+.button:active {
+    transform: scale(1);
+    transition: 0.1s linear;
+    background-color: #bbbbbb;
+    border: 1px solid #bbbbbb;
+}
+
+#uiBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2%;
+    height: 98vh;
+    width: 100%;
+    background-color: #FBFBFB;
+    /* border: 1px solid red; */
+}
+
+#uiHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+    width: 100%;
+    height: 7%;
+    /* padding-left: 2%; */
+    /* padding-right: 2%; */
+    /* border: 1px solid #CCCCCC; */
+    border-radius: 10px;
+}
+
+#appLogo {
+    width: 4%;
+    height: 100%;
+    min-width: 60px;
+    min-height: 60px;
+    /* border: 1px solid #CCCCCC;
+    border-radius: 10px; */
+}
+
+#headerBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: 100%;
+    gap: 1%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#adBoxx {
+    width: 70%;
+    height: 85%;
+    background-color: #CCCCCC;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#adBoxx > img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#postCreateBtn {
+    width: 15%;
+    height: 85%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#postCreateBtn > img {
+    width: 50%;
+    height: 50%;
+}
+
+#myPostsBtn {
+    width: 5%;
+    height: 85%;
+    min-width: 30px;
+    min-height: 30px;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#myPostsBtn > img {
+    width: 45%;
+    height: 50%;
+}
+
+#notificationBtn {
+    width: 5%;
+    height: 85%;
+    min-width: 30px;
+    min-height: 30px;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#notificationBtn > img {
+    width: 45%;
+    height: 50%;
+}
+
+#profileBtn {
+    width: 5%;
+    height: 85%;
+    min-width: 30px;
+    min-height: 30px;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#profileBtn > img {
+    width: 45%;
+    height: 50%;
+}
+
+main {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+    width: 100%;
+    height: 89%;
+    /* border: 1px solid green */
+}
+
+main > #uiMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 79%;
+    height: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+main > #uiSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 35%;
+    height: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#uiSide > #filterBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+    height: 20%;
+    width: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    /* border: 1px solid black; */
+}
+
+#filterBox > #searchFilterInp {
+    width: 80%;
+}
+
+#uiSide > #scrollBox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5%;
+    height: 80%;
+    width: 100%;
+    /* border: 1px solid black; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.postSelectBox {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+    padding: 3%;
+    height: 30%;
+    width: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    transition: 0.1s linear;
+}
+
+.postSelectBox > #postPreviewBox {
+    width: 40%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+#postPreviewBox > img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+.postSelectBox > div:not(#postPreviewBox) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    width: 60%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+.postSelectBox:hover {
+    transform: scale(1.01);
+    background-color: #ebebeb;
+    border: 1px solid #ebebeb;
+}
+
+.postSelectBox:active {
+    transform: scale(1);
+    background-color: #dedede;
+    border: 1px solid #dedede;
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        flex-direction: column;
+    }
+    main > #uiSide {
+        width: 100%;
+        height: 60%;
+    }
+    main > #uiMain {
+        width: 100%;
+        height: 40%;
+    }
+}
+
+
+
+#postBgBlur {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(90, 90, 90, 0.54);
+}
+
+#postBg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4%;
+    width: 90%;
+    height: 70%;
+    background-color: #FBFBFB;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#postBg > #postImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 70%;
+    background-color: #CCCCCC;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#postImg > img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+/*  */
+#postBg > #postInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+    width: 50%;
+    height: 70%;
+}
+
+#postInfo > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 20%;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+}
+
+#postInfo > div > span {
+    font-size: clamp(0.6em, 2vw, 1em);
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/postPage/postPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Tiny5&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+  <div id="uiBox">
+
+        <header id="uiHeader">
+            <img src="assets/img/logotransparent.png" id="appLogo">
+            <div id="headerBox">
+                <div id="adBoxx">
+                    <img src="assets/img/nerf_ad.png">
+                </div>
+                <button id="postCreateBtn" class="button" onclick="window.location.href = './home.php'">
+                    voir les annonces
+                </button>
+                <button id="myPostsBtn" class="button">
+                    <img src="assets/img/briefcase.png">
+                </button>
+                <button id="notificationBtn" class="button">
+                    <img src="assets/img/notification.png">
+                </button>
+                <button id="profileBtn" class="button">
+                    <img src="assets/img/account.png">
+                </button>
+            </div>
+        </header>
+
+
+
+
+
+  <!-- Formulaire professionnel -->
+        <form action="./bd_php/addPost.php" method="post" id="addressForm" enctype="multipart/form-data" style="min-width: 600px;">
+          <h2>Publier une annonce</h2>
+
+          <div class="form-group">
+            <label for="title">Titre :</label>
+            <input name="title" type="text" id="title" placeholder="Titre de l'annonce" required>
+          </div>
+            <div class="form-group">
+              <label for="adress">Adresse :</label>
+              <input name="adress" type="text" id="adress" placeholder="Adresse complète" required>
+            </div>
+          
+            <input type="hidden" name="latitude" id="la">
+            <input type="hidden" name="longitude" id="lo">
+          
+
+          <div class="form-group">
+            <label for="description">Description :</label>
+            <textarea name="description" id="description" rows="6" placeholder="Décrivez votre offre en détail…" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Prix :</label>
+            <input name="price" type="number" id="price" placeholder="Prix de la prestation" required>
+          </div>
+
+          <div class="form-group">
+            <label for="type">Type de service :</label>
+            <select name="type" id="type" required>
+              <option value="" disabled selected>Choisir un type</option>
+              <option value="TRAVAUX_MANUELS">Travaux manuels</option>
+              <option value="SOUTIEN_SCOLAIRE">Soutien scolaire</option>
+              <option value="TECHNOLOGIE">Technologie</option>
+              <option value="LANGUES">Langues</option>
+              <option value="SERVICE_A_LA_PERSONNE">Service à la personne</option>
+              <option value="LIVRAISON">Livraison</option>
+              <option value="TRANSPORT">Transport</option>
+              <option value="ANIMAUX">Animaux</option>
+              <option value="JARDIN">Jardin</option>
+              <option value="MENAGE">Ménage</option>
+              <option value="TRAVAUX">Travaux</option>
+            </select>
+            
+            <div class="form-group">
+              <label for="image" style="padding-top: 10px;">Ajouter une image:</label>
+              <input name="image" type="file" accept="image/*">
+            </div>
+          </div>
+          <button id="submitBTN" type="submit" class="submit-btn">Publier</button>
+        </form>
+        </div>
+
+<div id="result"></div>
+  
+
+
+  <script>
+    // Votre clé d'API Google (remplacez "YOUR_API_KEY" par la vôtre).
+    const API_KEY = "AIzaSyCuRA36AzIS5o-83Qx1V6Rc90NXsZRwU4o";
+  
+    // Gestion de l'envoi du formulaire
+    document.getElementById('addressForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Empêche la soumission par défaut
+  
+      // Récupérer l'adresse
+      var address = document.getElementById('adress').value.trim();
+      if (!address) {
+        document.getElementById('result').textContent = "Veuillez entrer une adresse.";
+        return;
+      }
+  
+      // Construire l'URL pour la requête à l'API Google Geocoding
+      var url = "https://maps.googleapis.com/maps/api/geocode/json"
+                + "?address=" + encodeURIComponent(address)
+                + "&key=" + API_KEY;
+  
+      // Effectuer la requête Fetch vers l'API
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === "OK") {
+            // Le premier résultat
+            var result = data.results[0];
+            var lat = result.geometry.location.lat;
+            var lng = result.geometry.location.lng;
+  
+            // Remplir les champs cachés
+            document.getElementById('la').value = lat;
+            document.getElementById('lo').value = lng;
+  
+            // Afficher la réponse (facultatif)
+            document.getElementById('result').innerHTML = 
+              "Coordonnées calculées :<br>"
+              + "<strong>Latitude</strong> : " + lat + "<br>"
+              + "<strong>Longitude</strong> : " + lng;
+  
+            // Soumettre le formulaire une fois les coordonnées remplies
+            event.target.submit();
+          } else {
+            // Si le statut n'est pas "OK", annuler la soumission
+            document.getElementById('result').textContent = 
+              "Impossible de trouver les coordonnées pour l'adresse fournie.";
+          }
+        })
+        .catch(error => {
+          console.error("Erreur de géocodage :", error);
+          document.getElementById('result').textContent = 
+            "Une erreur est survenue lors de la requête. Veuillez réessayer.";
+        });
+    });
+  </script>
+    </div>
+  </div>
+  
+</body>
+</html>
+
+
+
+
+
+
+
